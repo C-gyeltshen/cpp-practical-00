@@ -1,4 +1,4 @@
-# CSF303 C++ Practical — Quick Reference
+# CSF303 C++ Practical
 
 ## Q01 — Personal Introduction
 Store your full name and student number as variables.
