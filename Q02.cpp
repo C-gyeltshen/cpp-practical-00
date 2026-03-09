@@ -5,7 +5,7 @@ using namespace std;
 int main() {
     string studentNumber; 
     cout << "Enter your student number: ";
-    cin >> studentNumber;
+    getline(cin, studentNumber);  // Read entire line including spaces
 
     cout << "Your student number.     : " << studentNumber << endl;
 
@@ -14,13 +14,16 @@ int main() {
     int length = studentNumber.length(); 
 
     for (int i = 0; i < length; i++){
-        int digit = studentNumber[i] - '0';  
-        sum += digit;
+        // Only process numeric characters
+        if (isdigit(studentNumber[i])) {
+            int digit = studentNumber[i] - '0';  
+            sum += digit;
+        }
     }
     cout << "Digit Sum                : " << sum << endl;
 
-    int reminder = sum / 7;
-    cout << "Remender (% 7)           : " << reminder << endl;
+    int remainder = sum % 7;  // Changed from / to %
+    cout << "Remainder (% 7)          : " << remainder << endl;
 
     if (sum % 2 == 0){
         cout << "Odd / Even               : Even" << endl;
@@ -28,8 +31,13 @@ int main() {
         cout << "Odd / Even               : Odd" << endl;
     }
 
-    int number = stoi(studentNumber);
-        cout << "Multiplied my 3          : " << 3 * number;
+    // Only convert if string contains only digits
+    if (!studentNumber.empty() && studentNumber.find_first_not_of("0123456789") == string::npos) {
+        int number = stoi(studentNumber);
+        cout << "Multiplied by 3          : " << 3 * number << endl;
+    } else {
+        cout << "Multiplied by 3          : Cannot multiply (not a valid number)" << endl;
+    }
 
     return 0;
 }
